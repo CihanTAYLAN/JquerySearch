@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Live Search</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <input type="text" data-toggle="search-area" data-search-area="ul" data-search-item="li">
+    <ul>
+        <li>Lorem</li>
+        <li>İpsum</li>
+        <li>Sit</li>
+        <li>Hi</li>
+        <li>Hello</li>
+        <li>John De</li>
+    </ul>
+    <script>
+        $(document).on('keyup', '[data-toggle="search-area"]', function () {
+            var area = $(this).data('search-area');
+            var elem = $(this).data('search-item');
+            var filter = $(this).val();
+            $(area).find(elem).each(function () {
+                if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                    $(this).fadeOut();
+                } else {
+                    $(this).show();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
